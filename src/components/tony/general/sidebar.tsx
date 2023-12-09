@@ -1,33 +1,29 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import {
-  AlbumIcon,
-  ArrowLeftToLine,
-  ArrowLeftToLineIcon,
-  ArrowRightLeftIcon,
-  CpuIcon,
-  Table,
-} from "lucide-react";
+import { cn } from "@/lib/utils";
+import { AlbumIcon, CpuIcon, Table } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 
 type Props = {};
 
 export default function Sidebar({}: Props) {
+  const pathName = usePathname();
+
   return (
-    <aside className="flex h-screen  flex-col items-center space-y-8 border-r border-slate-200   py-8 px-6 ">
+    <aside className="flex h-screen  flex-col items-center space-y-8 border-r border-slate-200   px-6 py-8 ">
       <Link
-        href="#"
-        className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
+        href="/"
+        className=" title-font mb-4 flex cursor-pointer items-center font-medium text-gray-900 md:mb-0"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          className="h-10 w-10 rounded-full bg-indigo-500 p-2 text-white"
           viewBox="0 0 24 24"
         >
           <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
@@ -37,8 +33,13 @@ export default function Sidebar({}: Props) {
       <ul className="w-full space-y-3">
         <li>
           <Link
-            href="#"
-            className="flex gap-1 cursor-pointer p-2 hover:bg-slate-100 hover:text-violet-500 rounded transition-colors duration-150"
+            href="/read"
+            className={cn(
+              "flex cursor-pointer gap-1 rounded p-2 transition-colors duration-150 hover:bg-slate-100 hover:text-violet-500",
+              {
+                "bg-slate-100 text-violet-500": pathName === "/read",
+              },
+            )}
           >
             <AlbumIcon className="stroke-1" />
             <span>Read</span>
@@ -47,8 +48,13 @@ export default function Sidebar({}: Props) {
 
         <li>
           <Link
-            href="#"
-            className="flex gap-1 cursor-pointer p-2 hover:bg-slate-100 hover:text-violet-500 rounded transition-colors duration-150"
+            href="/cards"
+            className={cn(
+              "flex cursor-pointer gap-1 rounded p-2 transition-colors duration-150 hover:bg-slate-100 hover:text-violet-500",
+              {
+                "bg-slate-100 text-violet-500": pathName === "/cards",
+              },
+            )}
           >
             <CpuIcon className="stroke-1" />
             <span>Memorise</span>
@@ -57,11 +63,16 @@ export default function Sidebar({}: Props) {
 
         <li>
           <Link
-            href="#"
-            className="flex gap-1 cursor-pointer p-2 hover:bg-slate-100 hover:text-violet-500 rounded transition-colors duration-150"
+            href="/datas"
+            className={cn(
+              "flex cursor-pointer gap-1 rounded p-2 transition-colors duration-150 hover:bg-slate-100 hover:text-violet-500",
+              {
+                "bg-slate-100 text-violet-500": pathName === "/datas",
+              },
+            )}
           >
             <Table className="stroke-1" />
-            <span>Data</span>
+            <span>Datas</span>
           </Link>
         </li>
       </ul>

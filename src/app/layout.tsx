@@ -27,14 +27,14 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased flex",
-          fontSans.variable
+          "flex min-h-screen bg-background font-sans antialiased",
+          fontSans.variable,
         )}
       >
         <Sidebar />
-        <section className="">
+        <section className="flex h-[100vh]  w-full flex-col  ">
           <Header />
-          {children}
+          <div className="flex-1 overflow-y-scroll">{children}</div>
         </section>
       </body>
     </html>

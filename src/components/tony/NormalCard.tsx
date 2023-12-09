@@ -35,7 +35,7 @@ export default function NormalCard({}: Props) {
   const [collapsible, setCollapsible] = useState(false);
 
   return (
-    <div className="w-[60%]">
+    <div className="w-full p-6">
       <Card key={currentIdx}>
         <CardHeader>Card Header {currentIdx}</CardHeader>
         <CardContent className="space-y-3">

@@ -1,17 +1,25 @@
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
+
 import React from "react";
 
 type Props = {};
 
 export default function Header({}: Props) {
   return (
-    <header className="text-gray-600 body-font">
-      <div className=" mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-        <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-          <a className="mr-5 hover:text-gray-900">First Link</a>
-          <a className="mr-5 hover:text-gray-900">Second Link</a>
-          <a className="mr-5 hover:text-gray-900">Third Link</a>
-          <a className="mr-5 hover:text-gray-900">Fourth Link</a>
+    <header className="body-font h-[5vh] text-gray-600">
+      <div className=" mx-auto flex flex-col flex-wrap items-center p-5 md:flex-row">
+        <nav className="flex flex-wrap items-center justify-center text-base md:ml-auto">
+          <Link
+            href="/about"
+            className="mr-5 cursor-pointer hover:text-gray-900"
+          >
+            About Me
+          </Link>
+
+          <Link href="#" className="mr-5 hover:text-gray-900">
+            First Link
+          </Link>
         </nav>
         <Button>Login</Button>
       </div>
