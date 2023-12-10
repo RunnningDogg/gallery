@@ -21,19 +21,57 @@ function memoryRetention(time: number) {
   return parseFloat(retention.toFixed(2));
 }
 
-function ebbinghausRetention(time: number) {
-  const percentage = 100 / (1 + 1.08 * Math.pow(time, 0.21));
-  return Math.floor(percentage); // 使用 Math.floor 来只保留整数部分
+/**
+ * 根据一天后的留存率，假设指数函数的近似,反算出S的值应该是多少
+ * y = L + (1-L) exp(t/-S)
+ * @param rention 表示一天后知识的留存率，以第一天为100为例子
+ */
+function calculateSFromRetentionDayOne(rention: number, L: number): number {
+  return -1 / Math.log((rention - L) / (1 - L));
 }
 
-console.log(memoryRetention(1));
+/**
+ * 艾宾浩斯遗忘曲线近似函数
+ * @param t x坐标
+ * @param S 衰减系数
+ * @param [L=0.21] 这是t趋向于无穷大的时候, 指数函数趋向的值
+ * @param [alpha=1] 默认的衰减系数
+ * @returns
+ */
+function calculateRetention(
+  t: number,
+  S: number,
+  L: number = 0.21,
+  alpha: number = 1,
+): number {
+  const rentionRate = L + (1 - L) * Math.exp(-(t ** alpha) / S);
+  return Math.floor(100 * rentionRate);
+}
+
+// 按照百度百科的说法,第一天后的留存率是33%
+const S1 = calculateSFromRetentionDayOne(0.33, 0.2);
+const S2 = calculateSFromRetentionDayOne(0.45, 0.3);
+const S3 = calculateSFromRetentionDayOne(0.57, 0.4);
 
 const rangeData = Array.from({ length: 15 }, (_, idx) => {
   return {
     day: idx,
-    retention: ebbinghausRetention(idx),
+    // retention: ebbinghausRetention(idx),
+    retention1: calculateRetention(idx, S1, 0.21, 0.5),
+    retention2: calculateRetention(idx, S2, 0.42, 0.5),
+    retention3: calculateRetention(idx, S3, 0.63, 0.5),
   };
 });
+
+/**
+ * 艾宾浩斯遗忘曲线
+ * @param time
+ * @returns
+ */
+function ebbinghausRetention(time: number) {
+  const percentage = 100 / (1 + 1.08 * Math.pow(time, 0.21));
+  return Math.floor(percentage); // 使用 Math.floor 来只保留整数部分
+}
 
 export default function AibinhaosiChart({}: Props) {
   return (
@@ -56,10 +94,13 @@ export default function AibinhaosiChart({}: Props) {
         <Legend />
         <Line
           type="monotone"
-          dataKey="retention"
+          dataKey="retention1"
           stroke="#8884d8"
           activeDot={{ r: 8 }}
         />
+        <Line type="monotone" dataKey="retention2" stroke="#82ca9d" />
+        <Line type="monotone" dataKey="retention3" stroke="#d8b884" />
+        {/* <Line type="monotone" dataKey="retention3" stroke="#ca8282" /> */}
       </LineChart>
     </ResponsiveContainer>
   );

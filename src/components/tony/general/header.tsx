@@ -18,7 +18,7 @@ export default function Header({}: Props) {
           </Link>
 
           <Link href="#" className="mr-5 hover:text-gray-900">
-            First Link
+            Blog
           </Link>
         </nav>
         <Button>Login</Button>

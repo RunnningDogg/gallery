@@ -35,9 +35,11 @@ export default function NormalCard({}: Props) {
   const [collapsible, setCollapsible] = useState(false);
 
   return (
-    <div className="w-full p-6">
+    <div className="max-w-4xl p-6">
       <Card key={currentIdx}>
-        <CardHeader>Card Header {currentIdx}</CardHeader>
+        <CardHeader className="scroll-m-20 pb-2 text-center text-3xl font-semibold tracking-tight first:mt-0">
+          Card Header {currentIdx}
+        </CardHeader>
         <CardContent className="space-y-3">
           <p className="mb-3">
             This is a card{currentIdx} Great work... It can be applied to entire
@@ -84,7 +86,7 @@ export default function NormalCard({}: Props) {
                 </Button>
               </CollapsibleTrigger>
             </div>
-            <CollapsibleContent>
+            <CollapsibleContent className="text-center">
               Yes. Free to use for personal and commercial projects. No
               attribution required.
             </CollapsibleContent>
@@ -102,14 +104,14 @@ export default function NormalCard({}: Props) {
         <CardFooter className="mt-3 flex justify-between gap-3">
           <Button
             variant="outline"
-            className="hover:scale-110 transition-all duration-150"
+            className="transition-all duration-150 hover:scale-110"
           >
             <Check className="text-green-500" />
           </Button>
 
           <Button
             variant="outline"
-            className="hover:scale-110 transition-all duration-150"
+            className="transition-all duration-150 hover:scale-110"
           >
             <X className="text-red-500" />
           </Button>
