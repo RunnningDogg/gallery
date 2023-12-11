@@ -14,6 +14,7 @@ import {
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import Tiptap from "./TipTap";
+import toast, { Toaster } from "react-hot-toast";
 
 type Props = {};
 
@@ -37,6 +38,7 @@ export default function CardForm({}: Props) {
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
+    toast.success("submit!");
   }
 
   return (
@@ -74,6 +76,7 @@ export default function CardForm({}: Props) {
         />
         <Button type="submit">Submit</Button>
       </form>
+      <Toaster />
     </Form>
   );
 }
