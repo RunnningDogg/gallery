@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import toast, { Toaster } from "react-hot-toast";
 type Props = {};
 
 const skills = [
@@ -33,7 +34,7 @@ const fadeInAnimationVariants = {
 
 export default function AboutPage({}: Props) {
   return (
-    <div className="flex  flex-col items-center space-y-6">
+    <div className="mx-auto  flex max-w-[1200px] flex-col items-center space-y-6">
       <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
         About Me
       </h2>
