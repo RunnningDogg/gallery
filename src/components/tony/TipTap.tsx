@@ -32,7 +32,7 @@ const Tiptap = ({ value, onChange }: Props) => {
       }),
       OrderList.configure({
         HTMLAttributes: {
-          class: "list-decimal my-6 ml-6 list-disc [&>li]:mt-2",
+          class: "list-decimal my-6 ml-6 [&>li]:mt-2",
         },
       }),
       BlockQuote.configure({
@@ -52,7 +52,7 @@ const Tiptap = ({ value, onChange }: Props) => {
 
     onUpdate({ editor }) {
       onChange(editor.getHTML());
-      console.log(editor.getHTML());
+      // console.log(editor.getHTML());
     },
   });
 

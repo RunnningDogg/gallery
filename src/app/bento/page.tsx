@@ -55,7 +55,7 @@ export default function Bento({}: Props) {
         Bento Layout
       </h2>
 
-      <nav>
+      <nav className="absolute right-10 top-10">
         <ul className="flex flex-col gap-2 border-l-[3px] pl-2">
           <li>
             <SmoothScrollLink to="section1">Layout1</SmoothScrollLink>
@@ -84,7 +84,7 @@ export default function Bento({}: Props) {
         ></a>
       </h3>
 
-      <div className="grid-rows-8 grid min-h-[500px] grid-cols-8 gap-2 bg-slate-100">
+      <div className="grid min-h-[500px] grid-cols-8 grid-rows-8 gap-2 bg-slate-100">
         <div className="col-span-2 row-span-6 flex items-center justify-center rounded-md bg-blue-300">
           1
         </div>
@@ -126,7 +126,7 @@ export default function Bento({}: Props) {
         ></a>
       </h3>
 
-      <div className=" grid-rows-8 grid min-h-[500px] grid-flow-row-dense  grid-cols-8 gap-2 bg-slate-100">
+      <div className=" grid min-h-[500px] grid-flow-row-dense grid-cols-8  grid-rows-8 gap-2 bg-slate-100">
         <div className="col-span-4 row-span-6 flex items-center justify-center rounded-md bg-blue-300">
           1
         </div>
@@ -162,7 +162,7 @@ export default function Bento({}: Props) {
         ></a>
       </h3>
 
-      <div className="grid-rows-8 grid min-h-[500px] grid-cols-8 gap-2 bg-slate-100">
+      <div className="grid min-h-[500px] grid-cols-8 grid-rows-8 gap-2 bg-slate-100">
         <div className="col-span-6 row-span-6 flex items-center justify-center rounded-md bg-blue-300"></div>
         <div className="col-span-2 row-span-6 flex items-center justify-center rounded-md bg-blue-300"></div>
         <div className="col-span-2 row-span-2 flex items-center justify-center rounded-md bg-blue-300"></div>
