@@ -4,17 +4,15 @@ import { Button } from "../ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
 import {
-  Check,
+  ArrowLeft,
+  ArrowRight,
   ChevronDown,
   ChevronUp,
-  ChevronsDownUp,
-  ChevronsUpDown,
-  X,
+  Tag,
 } from "lucide-react";
 import { Badge } from "../ui/badge";
 import {
@@ -26,23 +24,20 @@ import {
 type Props = {};
 
 export default function NormalCard({}: Props) {
-  const currentIdx = 1;
-
   const tags = ["tech", "ai"];
 
   const answer = "this is the answer";
 
   const [collapsible, setCollapsible] = useState(false);
 
-  return (
-    <div className="max-w-4xl p-6">
-      <Card key={currentIdx}>
-        <CardHeader className="scroll-m-20 pb-2 text-center text-3xl font-semibold tracking-tight first:mt-0">
-          Card Header {currentIdx}
-        </CardHeader>
-        <CardContent className="space-y-3">
-          <p className="mb-3">
-            This is a card{currentIdx} Great work... It can be applied to entire
+  // 多卡片翻页
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const [slideDirection, setSlideDirection] = useState("left");
+  const cardSets = [
+    // 这里是你的卡片数据
+    {
+      header: "cardset1 header1",
+      content: `This is a card{currentIdx} Great work... It can be applied to entire
             page like when page rendered the animation begin on textboxes and
             buttons ... Can you do more tutorials on animation Great work... It
             can be applied to entire page like when page rendered the animation
@@ -65,8 +60,58 @@ export default function NormalCard({}: Props) {
             on textboxes and buttons ... Can you do more tutorials on animation
             Great work... It can be applied to entire page like when page
             rendered the animation begin on textboxes and buttons ... Can you do
-            more tutorials on animation
-          </p>
+            more tutorials on animation`,
+      answer: `Yes. Free to use for personal and commercial projects. No
+      attribution required.`,
+      tags: ["ai", "gpt", "react"],
+    },
+    {
+      header: "cardset1 header2",
+      content: `This is a card{currentIdx} Great work... It can be applied to entire
+            page like when page rendered the animation begin on textboxes and
+            buttons ... Can you do more tutorials on animation Great work... It
+            can be applied to entire page like when page rendered the animation
+            begin on textboxes and buttons ... Can you do more tutorials on
+            animation Great work... It can be applied to entire page like when
+            page rendered the animation begin on textboxes and buttons ...`,
+      answer: `This is from 1998 说唱领袖.`,
+      tags: ["backend", "java"],
+    },
+  ];
+
+  const currentCard = cardSets[currentIdx];
+
+  const nextSet = () => {
+    setSlideDirection("left");
+    setCurrentIdx((prevIndex) => (prevIndex + 1) % cardSets.length);
+  };
+
+  const previousSet = () => {
+    setSlideDirection("right");
+    setCurrentIdx(
+      (prevIndex) => (prevIndex - 1 + cardSets.length) % cardSets.length,
+    );
+  };
+
+  return (
+    <div className="flex max-w-4xl justify-center p-6">
+      {/* left */}
+      <ArrowLeft
+        onClick={previousSet}
+        className="absolute left-[15rem] top-1/3 h-10 w-10 cursor-pointer text-violet-500 transition-all duration-150 hover:scale-110 hover:via-violet-700"
+      />
+      <ArrowRight
+        onClick={nextSet}
+        className="absolute right-[5rem] top-1/3 h-10 w-10 cursor-pointer text-violet-500 transition-all duration-150 hover:scale-110 hover:via-violet-700 "
+      />
+
+      {/* card */}
+      <Card key={currentIdx} className="">
+        <CardHeader className="scroll-m-20 pb-2 text-center text-3xl font-semibold tracking-tight first:mt-0">
+          {currentCard.header}
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <p className="mb-3">{currentCard.content}</p>
 
           <Collapsible>
             <div className="flex items-center justify-center space-x-4 px-4">
@@ -87,34 +132,30 @@ export default function NormalCard({}: Props) {
               </CollapsibleTrigger>
             </div>
             <CollapsibleContent className="text-center">
-              Yes. Free to use for personal and commercial projects. No
-              attribution required.
+              {currentCard.answer}
             </CollapsibleContent>
           </Collapsible>
 
-          <div className="flex justify-center">
-            {tags.map((item) => (
-              <Badge key={item} variant="outline" className="text-sm">
+          {/* <Separator />  */}
+        </CardContent>
+
+        <CardFooter className="">
+          <div className="flex items-center justify-start gap-2 ">
+            <div className="flex items-center">
+              <Tag className="h-5 w-5 text-violet-500" />
+              <span></span>
+            </div>
+            {currentCard?.tags?.map((item) => (
+              <Badge
+                key={item}
+                variant="outline"
+                className="flex items-center bg-violet-600 text-sm text-slate-100"
+              >
                 <span>{item}</span>
+                {/* <X className="ml-1 h-4 w-4 cursor-pointer transition-all duration-150 hover:scale-110" /> */}
               </Badge>
             ))}
           </div>
-        </CardContent>
-
-        <CardFooter className="mt-3 flex justify-between gap-3">
-          <Button
-            variant="outline"
-            className="transition-all duration-150 hover:scale-110"
-          >
-            <Check className="text-green-500" />
-          </Button>
-
-          <Button
-            variant="outline"
-            className="transition-all duration-150 hover:scale-110"
-          >
-            <X className="text-red-500" />
-          </Button>
         </CardFooter>
       </Card>
     </div>
