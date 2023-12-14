@@ -24,17 +24,12 @@ import {
 type Props = {};
 
 export default function NormalCard({}: Props) {
-  const tags = ["tech", "ai"];
-
-  const answer = "this is the answer";
-
   const [collapsible, setCollapsible] = useState(false);
 
   // 多卡片翻页
   const [currentIdx, setCurrentIdx] = useState(0);
-  const [slideDirection, setSlideDirection] = useState("left");
+  // const [slideDirection, setSlideDirection] = useState("left");
   const cardSets = [
-    // 这里是你的卡片数据
     {
       header: "cardset1 header1",
       content: `This is a card{currentIdx} Great work... It can be applied to entire
@@ -82,12 +77,12 @@ export default function NormalCard({}: Props) {
   const currentCard = cardSets[currentIdx];
 
   const nextSet = () => {
-    setSlideDirection("left");
+    // setSlideDirection("left");
     setCurrentIdx((prevIndex) => (prevIndex + 1) % cardSets.length);
   };
 
   const previousSet = () => {
-    setSlideDirection("right");
+    // setSlideDirection("right");
     setCurrentIdx(
       (prevIndex) => (prevIndex - 1 + cardSets.length) % cardSets.length,
     );
@@ -96,14 +91,14 @@ export default function NormalCard({}: Props) {
   return (
     <div className="flex max-w-4xl justify-center p-6">
       {/* left */}
-      <ArrowLeft
+      {/* <ArrowLeft
         onClick={previousSet}
         className="absolute left-[15rem] top-1/3 h-10 w-10 cursor-pointer text-violet-500 transition-all duration-150 hover:scale-110 hover:via-violet-700"
       />
       <ArrowRight
         onClick={nextSet}
         className="absolute right-[5rem] top-1/3 h-10 w-10 cursor-pointer text-violet-500 transition-all duration-150 hover:scale-110 hover:via-violet-700 "
-      />
+      /> */}
 
       {/* card */}
       <Card key={currentIdx} className="">

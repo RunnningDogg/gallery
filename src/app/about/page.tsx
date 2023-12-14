@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import toast, { Toaster } from "react-hot-toast";
+import ZodForm from "@/components/tony/learn/ZodForm";
 type Props = {};
 
 const skills = [
@@ -76,6 +77,8 @@ export default function AboutPage({}: Props) {
           </motion.li>
         ))}
       </ul>
+
+      <ZodForm />
     </div>
   );
 }
