@@ -1,10 +1,13 @@
 "use client";
 import NormalCard from "@/components/tony/NormalCard";
 import { Button } from "@/components/ui/button";
+import dayjs from "dayjs";
 import { Check, X } from "lucide-react";
 import React, { useEffect } from "react";
 import { z } from "zod";
 type Props = {};
+import localizedFormat from "dayjs/plugin/localizedFormat";
+dayjs.extend(localizedFormat);
 
 const productSchema = z.object({
   name: z.string(),
@@ -16,6 +19,53 @@ type Product = z.infer<typeof productSchema>;
 const getPriceFromProduct = (product: Product) => {
   return product.price;
 };
+
+const cardSets = [
+  {
+    header: "cardset1 header1",
+    content: `This is a card{currentIdx} Great work... It can be applied to entire
+          page like when page rendered the animation begin on textboxes and
+          buttons ... Can you do more tutorials on animation Great work... It
+          can be applied to entire page like when page rendered the animation
+          begin on textboxes and buttons ... Can you do more tutorials on
+          animation Great work... It can be applied to entire page like when
+          page rendered the animation begin on textboxes and buttons ... Can
+          you do more tutorials on animation This is a card{currentIdx} Great
+          work... It can be applied to entire page like when page rendered the
+          animation begin on textboxes and buttons ... Can you do more
+          tutorials on animation Great work... It can be applied to entire
+          page like when page rendered the animation begin on textboxes and
+          buttons ... Can you do more tutorials on animation Great work... It
+          can be applied to entire page like when page rendered the animation
+          begin on textboxes and buttons ... Can you do more tutorials on
+          animation This is a card
+          {currentIdx} Great work... It can be applied to entire page like
+          when page rendered the animation begin on textboxes and buttons ...
+          Can you do more tutorials on animation Great work... It can be
+          applied to entire page like when page rendered the animation begin
+          on textboxes and buttons ... Can you do more tutorials on animation
+          Great work... It can be applied to entire page like when page
+          rendered the animation begin on textboxes and buttons ... Can you do
+          more tutorials on animation`,
+    answer: `Yes. Free to use for personal and commercial projects. No
+    attribution required.`,
+    tags: ["ai", "gpt", "react"],
+    date: dayjs().format("ll"),
+  },
+  {
+    header: "cardset1 header2",
+    content: `This is a card{currentIdx} Great work... It can be applied to entire
+          page like when page rendered the animation begin on textboxes and
+          buttons ... Can you do more tutorials on animation Great work... It
+          can be applied to entire page like when page rendered the animation
+          begin on textboxes and buttons ... Can you do more tutorials on
+          animation Great work... It can be applied to entire page like when
+          page rendered the animation begin on textboxes and buttons ...`,
+    answer: `This is from 1998 说唱领袖.`,
+    tags: ["backend", "java"],
+    date: dayjs().format("ll"),
+  },
+];
 
 export default function Page({}: Props) {
   useEffect(() => {
@@ -40,23 +90,7 @@ export default function Page({}: Props) {
         Card Set
       </h2>
 
-      <NormalCard />
-
-      <div className="flex justify-between gap-3">
-        <Button
-          variant="outline"
-          className="transition-all duration-150 hover:scale-110"
-        >
-          <Check className="text-green-500" />
-        </Button>
-
-        <Button
-          variant="outline"
-          className="transition-all duration-150 hover:scale-110"
-        >
-          <X className="text-red-500" />
-        </Button>
-      </div>
+      <NormalCard cardSets={cardSets} />
     </div>
   );
 }

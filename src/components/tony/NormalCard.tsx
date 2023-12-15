@@ -10,9 +10,11 @@ import {
 import {
   ArrowLeft,
   ArrowRight,
+  Check,
   ChevronDown,
   ChevronUp,
   Tag,
+  X,
 } from "lucide-react";
 import { Badge } from "../ui/badge";
 import {
@@ -20,59 +22,14 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import dayjs from "dayjs";
+import { ICardProps } from "@/schema/card";
 
-type Props = {};
-
-export default function NormalCard({}: Props) {
+export default function NormalCard({ cardSets }: ICardProps) {
   const [collapsible, setCollapsible] = useState(false);
 
   // 多卡片翻页
   const [currentIdx, setCurrentIdx] = useState(0);
-  // const [slideDirection, setSlideDirection] = useState("left");
-  const cardSets = [
-    {
-      header: "cardset1 header1",
-      content: `This is a card{currentIdx} Great work... It can be applied to entire
-            page like when page rendered the animation begin on textboxes and
-            buttons ... Can you do more tutorials on animation Great work... It
-            can be applied to entire page like when page rendered the animation
-            begin on textboxes and buttons ... Can you do more tutorials on
-            animation Great work... It can be applied to entire page like when
-            page rendered the animation begin on textboxes and buttons ... Can
-            you do more tutorials on animation This is a card{currentIdx} Great
-            work... It can be applied to entire page like when page rendered the
-            animation begin on textboxes and buttons ... Can you do more
-            tutorials on animation Great work... It can be applied to entire
-            page like when page rendered the animation begin on textboxes and
-            buttons ... Can you do more tutorials on animation Great work... It
-            can be applied to entire page like when page rendered the animation
-            begin on textboxes and buttons ... Can you do more tutorials on
-            animation This is a card
-            {currentIdx} Great work... It can be applied to entire page like
-            when page rendered the animation begin on textboxes and buttons ...
-            Can you do more tutorials on animation Great work... It can be
-            applied to entire page like when page rendered the animation begin
-            on textboxes and buttons ... Can you do more tutorials on animation
-            Great work... It can be applied to entire page like when page
-            rendered the animation begin on textboxes and buttons ... Can you do
-            more tutorials on animation`,
-      answer: `Yes. Free to use for personal and commercial projects. No
-      attribution required.`,
-      tags: ["ai", "gpt", "react"],
-    },
-    {
-      header: "cardset1 header2",
-      content: `This is a card{currentIdx} Great work... It can be applied to entire
-            page like when page rendered the animation begin on textboxes and
-            buttons ... Can you do more tutorials on animation Great work... It
-            can be applied to entire page like when page rendered the animation
-            begin on textboxes and buttons ... Can you do more tutorials on
-            animation Great work... It can be applied to entire page like when
-            page rendered the animation begin on textboxes and buttons ...`,
-      answer: `This is from 1998 说唱领袖.`,
-      tags: ["backend", "java"],
-    },
-  ];
 
   const currentCard = cardSets[currentIdx];
 
@@ -89,7 +46,7 @@ export default function NormalCard({}: Props) {
   };
 
   return (
-    <div className="flex max-w-4xl justify-center p-6">
+    <div className="flex max-w-4xl flex-col justify-center space-y-3 p-6">
       {/* left */}
       {/* <ArrowLeft
         onClick={previousSet}
@@ -135,24 +92,44 @@ export default function NormalCard({}: Props) {
         </CardContent>
 
         <CardFooter className="">
-          <div className="flex items-center justify-start gap-2 ">
-            <div className="flex items-center">
-              <Tag className="h-5 w-5 text-violet-500" />
-              <span></span>
+          <div className=" flex w-full items-center  justify-between gap-2 ">
+            <span className="text-sm text-muted-foreground">
+              {currentCard.date}
+            </span>
+            <div className="flex items-center gap-2">
+              <Tag className="mr-2 h-5 w-5 text-violet-500" />
+              {currentCard?.tags?.map((item) => (
+                <Badge
+                  key={item}
+                  variant="outline"
+                  className="flex items-center bg-violet-600 text-sm text-slate-100"
+                >
+                  <span>{item}</span>
+                  {/* <X className="ml-1 h-4 w-4 cursor-pointer transition-all duration-150 hover:scale-110" /> */}
+                </Badge>
+              ))}
             </div>
-            {currentCard?.tags?.map((item) => (
-              <Badge
-                key={item}
-                variant="outline"
-                className="flex items-center bg-violet-600 text-sm text-slate-100"
-              >
-                <span>{item}</span>
-                {/* <X className="ml-1 h-4 w-4 cursor-pointer transition-all duration-150 hover:scale-110" /> */}
-              </Badge>
-            ))}
           </div>
         </CardFooter>
       </Card>
+
+      <div className="flex justify-between gap-3">
+        <Button onClick={previousSet}>Prev</Button>
+        <Button
+          variant="outline"
+          className="transition-all duration-150 hover:scale-110"
+        >
+          <Check className="text-green-500" />
+        </Button>
+
+        <Button
+          variant="outline"
+          className="transition-all duration-150 hover:scale-110"
+        >
+          <X className="text-red-500" />
+        </Button>
+        <Button onClick={nextSet}>Next</Button>
+      </div>
     </div>
   );
 }
