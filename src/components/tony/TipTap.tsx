@@ -64,6 +64,8 @@ const Tiptap = ({ value, onChange }: Props) => {
       <EditorContent editor={editor} value={value} onChange={onChange} />
 
       {editor?.getHTML()}
+
+      <p> {editor?.getText()} </p>
     </div>
   );
 };

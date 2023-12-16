@@ -54,13 +54,7 @@ const cardSets = [
   },
   {
     header: "cardset1 header2",
-    content: `This is a card{currentIdx} Great work... It can be applied to entire
-          page like when page rendered the animation begin on textboxes and
-          buttons ... Can you do more tutorials on animation Great work... It
-          can be applied to entire page like when page rendered the animation
-          begin on textboxes and buttons ... Can you do more tutorials on
-          animation Great work... It can be applied to entire page like when
-          page rendered the animation begin on textboxes and buttons ...`,
+    content: `<h2 class="pb-2 text-3xl font-semibold tracking-tight first:mt-0" level="2">hello</h2><p>this is jiongxinliang</p><blockquote class="mt-6 border-l-2 pl-6 italic"><p>dwadwa</p></blockquote><p>dwadaw</p> <p><em>VueJs</em></p><p><em>NextjsCharka</em></p><p><s>dwadawdwa</s></p><p>This is 1996</p>`,
     answer: `This is from 1998 说唱领袖.`,
     tags: ["backend", "java"],
     date: dayjs().format("ll"),

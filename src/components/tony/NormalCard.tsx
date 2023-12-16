@@ -45,8 +45,10 @@ export default function NormalCard({ cardSets }: ICardProps) {
     );
   };
 
+  const markup = { __html: currentCard.content };
+
   return (
-    <div className="flex max-w-4xl flex-col justify-center space-y-3 p-6">
+    <div className="flex  max-w-4xl flex-col justify-center space-y-3 p-6">
       {/* left */}
       {/* <ArrowLeft
         onClick={previousSet}
@@ -58,16 +60,19 @@ export default function NormalCard({ cardSets }: ICardProps) {
       /> */}
 
       {/* card */}
-      <Card key={currentIdx} className="">
+      <Card key={currentIdx} className="mb-10">
         <CardHeader className="scroll-m-20 pb-2 text-center text-3xl font-semibold tracking-tight first:mt-0">
           {currentCard.header}
         </CardHeader>
         <CardContent className="space-y-3">
-          <p className="mb-3">{currentCard.content}</p>
+          <div
+            className="mb-3 min-w-[450px]"
+            dangerouslySetInnerHTML={markup}
+          ></div>
 
           <Collapsible>
             <div className="flex items-center justify-center space-x-4 px-4">
-              <h4 className="text-lg font-semibold">Show The Answer</h4>
+              {/* <h4 className="text-lg font-semibold">A</h4> */}
               <CollapsibleTrigger asChild>
                 <Button
                   onClick={() => setCollapsible(!collapsible)}
@@ -91,9 +96,9 @@ export default function NormalCard({ cardSets }: ICardProps) {
           {/* <Separator />  */}
         </CardContent>
 
-        <CardFooter className="">
+        <CardFooter className="border-t pt-3">
           <div className=" flex w-full items-center  justify-between gap-2 ">
-            <span className="text-sm text-muted-foreground">
+            <span className="text-sm font-semibold text-muted-foreground">
               {currentCard.date}
             </span>
             <div className="flex items-center gap-2">
@@ -105,7 +110,7 @@ export default function NormalCard({ cardSets }: ICardProps) {
                   className="flex items-center bg-violet-600 text-sm text-slate-100"
                 >
                   <span>{item}</span>
-                  {/* <X className="ml-1 h-4 w-4 cursor-pointer transition-all duration-150 hover:scale-110" /> */}
+                  {/* <X className="ml-1 h-4 w-4 cursor-pointer   transition-all duration-150 hover:scale-110" /> */}
                 </Badge>
               ))}
             </div>
@@ -113,22 +118,30 @@ export default function NormalCard({ cardSets }: ICardProps) {
         </CardFooter>
       </Card>
 
-      <div className="flex justify-between gap-3">
-        <Button onClick={previousSet}>Prev</Button>
-        <Button
-          variant="outline"
-          className="transition-all duration-150 hover:scale-110"
-        >
-          <Check className="text-green-500" />
+      <div className="  flex justify-between gap-3">
+        <Button onClick={previousSet} className="font-semibold">
+          Prev
         </Button>
 
-        <Button
-          variant="outline"
-          className="transition-all duration-150 hover:scale-110"
-        >
-          <X className="text-red-500" />
+        <div className="flex items-center gap-2">
+          <Button
+            variant="outline"
+            className="transition-all duration-150 hover:scale-110"
+          >
+            <Check className="text-green-500" />
+          </Button>
+
+          <Button
+            variant="outline"
+            className="transition-all duration-150 hover:scale-110"
+          >
+            <X className="text-red-500" />
+          </Button>
+        </div>
+
+        <Button onClick={nextSet} className="font-semibold">
+          Next
         </Button>
-        <Button onClick={nextSet}>Next</Button>
       </div>
     </div>
   );
