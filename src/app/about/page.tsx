@@ -77,8 +77,6 @@ export default function AboutPage({}: Props) {
           </motion.li>
         ))}
       </ul>
-
-      <ZodForm />
     </div>
   );
 }

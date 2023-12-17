@@ -30,7 +30,8 @@ export default function Sidebar({}: Props) {
         <AlbumIcon
           className={cn("stroke-1", {
             " rounded bg-slate-100 text-indigo-500": pathName === "/read",
-            "h-[40px] w-[40px] p-2": !isSidebarOpen,
+            "h-[40px] w-[40px] p-2 hover:rounded hover:bg-slate-100  hover:text-indigo-500":
+              !isSidebarOpen,
           })}
         />
       ),
@@ -42,7 +43,8 @@ export default function Sidebar({}: Props) {
         <CpuIcon
           className={cn("stroke-1", {
             "rounded bg-slate-100 text-indigo-500": pathName === "/cards",
-            "h-[40px] w-[40px] p-2": !isSidebarOpen,
+            "h-[40px] w-[40px] p-2 hover:rounded hover:bg-slate-100  hover:text-indigo-500":
+              !isSidebarOpen,
           })}
         />
       ),
@@ -54,7 +56,8 @@ export default function Sidebar({}: Props) {
         <PenSquare
           className={cn("stroke-1", {
             "rounded bg-slate-100 text-indigo-500": pathName === "/notes",
-            "h-[40px] w-[40px] p-2": !isSidebarOpen,
+            "h-[40px] w-[40px] p-2 hover:rounded hover:bg-slate-100  hover:text-indigo-500":
+              !isSidebarOpen,
           })}
         />
       ),
@@ -66,7 +69,8 @@ export default function Sidebar({}: Props) {
         <Table2
           className={cn("stroke-1", {
             "rounded bg-slate-100 text-indigo-500": pathName === "/table",
-            "h-[40px] w-[40px] p-2": !isSidebarOpen,
+            "h-[40px] w-[40px] p-2 hover:rounded hover:bg-slate-100 hover:text-indigo-500":
+              !isSidebarOpen,
           })}
         />
       ),
