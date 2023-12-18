@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import {
   AlbumIcon,
   ArrowLeftFromLine,
+  ArrowRightFromLine,
   CpuIcon,
   MenuIcon,
   PenSquare,
@@ -122,7 +123,7 @@ export default function Sidebar({}: Props) {
           >
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
           </svg>
-          {isSidebarOpen && <span className="ml-3 text-xl">NoteWise</span>}
+          {isSidebarOpen && <span className="ml-3 text-xl">CardWise</span>}
         </Link>
       </div>
 
@@ -164,13 +165,21 @@ export default function Sidebar({}: Props) {
           ))}
         </ul>
 
-        {isSidebarOpen && (
+        {isSidebarOpen ? (
           <Button
             variant="outline"
             className=" mb-3"
             onClick={() => setIsSidebarOpen(false)}
           >
             <ArrowLeftFromLine />
+          </Button>
+        ) : (
+          <Button
+            className="m-2"
+            variant="outline"
+            onClick={() => setIsSidebarOpen(true)}
+          >
+            <ArrowRightFromLine />
           </Button>
         )}
       </div>

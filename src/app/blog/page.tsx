@@ -6,10 +6,10 @@ export default function BlogPage({}: Props) {
   return (
     <div className="mx-auto flex max-w-[1200px] flex-col items-center space-y-5 py-10">
       <h2 className="border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
-        Blog Page
+        How CardWise Work
       </h2>
 
-      <blockquote className="mt-6 max-w-xl border-l-2 pl-6 italic">
+      <blockquote className="mt-6 max-w-2xl border-l-2 pl-6 italic">
         The core strategies, <strong>active recall</strong> and{" "}
         <strong>spaced repetition</strong>, are not only useful for exams but
         also for learning new disciplines.
@@ -19,7 +19,7 @@ export default function BlogPage({}: Props) {
         Active Recall
       </h3>
 
-      <p className="max-w-xl">
+      <p className="max-w-2xl">
         This article primarily emphasizes that spaced repetition is a more
         crucial learning strategy compared to the constant input of cramming, as
         this strategy can help us remember things better. Check the{" "}
@@ -32,7 +32,7 @@ export default function BlogPage({}: Props) {
         here
       </p>
 
-      <ul className="my-6 ml-6 max-w-xl list-disc [&>li]:mt-2">
+      <ul className="my-6 ml-6 max-w-2xl list-disc [&>li]:mt-2">
         <li>
           <strong>Active Recall Theory and Evidence:</strong> Active recall
           involves retrieving information from memory by testing oneself at
@@ -76,7 +76,7 @@ export default function BlogPage({}: Props) {
         Spaced Repetition
       </h3>
 
-      <p className="max-w-xl">
+      <p className="max-w-2xl">
         Thanks to Ali, this article primarily emphasizes that spaced repetition
         is a more crucial learning strategy compared to the constant input of
         cramming, as this strategy can help us remember things better. Check the{" "}
@@ -88,7 +88,7 @@ export default function BlogPage({}: Props) {
         </a>{" "}
         here
       </p>
-      <ul className="my-6 ml-6 max-w-xl list-disc [&>li]:mt-2">
+      <ul className="my-6 ml-6 max-w-2xl list-disc [&>li]:mt-2">
         <li>
           <strong>Spaced Repetition Over Cramming:</strong> Emphasizes the
           superiority of spaced repetition for study efficiency. This technique,

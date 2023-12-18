@@ -12,7 +12,7 @@ export default function Header({}: Props) {
   const pathName = usePathname();
 
   return (
-    <header className="body-font   text-gray-600">
+    <header className="body-font h-[5vh]  text-gray-600">
       <div className=" mx-auto flex flex-col flex-wrap items-center gap-2 p-5 md:flex-row md:gap-5">
         <nav className="flex flex-col flex-wrap items-center justify-center gap-2 text-base md:ml-auto md:flex-row md:gap-5">
           <Link

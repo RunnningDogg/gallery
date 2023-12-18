@@ -71,33 +71,23 @@ export const columns: ColumnDef<Card>[] = [
     cell: ({ row }) => (
       <div className="flex flex-wrap items-start gap-2">
         {(row.getValue("tags") as string[]).map((item) => (
-          <Badge key={item}>{item}</Badge>
+          <Badge variant="secondary" key={item}>
+            {item}
+          </Badge>
         ))}
       </div>
     ),
+    filterFn: (rows, columnIds, filterValue) => {
+      // return rows.filter(row => {
+      //   // 获取当前行的tags值
+      //   const tags = row.values[columnIds[0]];
+
+      //   // 检查tags数组是否包含filterValue
+      //   return tags.includes(filterValue);
+      // });
+      return (rows.getValue("tags") as string[]).includes(filterValue);
+    },
   },
-  // recalled_first_date
-  // columnHelper.display({
-  //   id: "recalled_first_date",
-  //   header: ({ column }) => (
-  //     <DataTableColumnHeader column={column} title="First Date" />
-  //   ),
-  //   cell: ({ row }) => {
-  //     console.log(row.getValue("recalled_first_score"));
-  //     return (
-  //       <div
-  //         className={cn({
-  //           "bg-teal-100": row.getValue("recalled_first_score") === 4,
-  //           "bg-sky-100": row.getValue("recalled_first_score") === 3,
-  //           "bg-amber-100": row.getValue("recalled_first_score") === 2,
-  //           "text-red-500": row.getValue("recalled_first_score") === 1,
-  //         })}
-  //       >
-  //         {row.getValue("recalled_first_date")}
-  //       </div>
-  //     );
-  //   },
-  // }),
   {
     accessorKey: "recalled_first_date",
     header: ({ column }) => (

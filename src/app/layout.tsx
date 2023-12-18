@@ -29,14 +29,14 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "flex min-h-screen bg-background font-sans antialiased",
+          "flex h-screen bg-background font-sans antialiased",
           fontSans.variable,
         )}
       >
         <Sidebar />
-        <section className="flex h-[100vh]  w-full flex-col  ">
+        <section className="flex max-h-[100vh] w-full flex-col py-3">
           <Header />
-          <div className="flex-1 overflow-y-scroll">{children}</div>
+          <div className="flex-1 overflow-y-auto">{children}</div>
         </section>
       </body>
     </html>
