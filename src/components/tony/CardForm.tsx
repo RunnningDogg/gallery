@@ -15,6 +15,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import Tiptap from "./TipTap";
 import toast, { Toaster } from "react-hot-toast";
+import TagInput from "./TagInput";
 
 type Props = {};
 
@@ -23,6 +24,7 @@ const formSchema = z.object({
     message: "Title must be at least 2 characters.",
   }),
   content: z.string(),
+  tag: z.string(),
 });
 
 export default function CardForm({}: Props) {
@@ -33,6 +35,7 @@ export default function CardForm({}: Props) {
     defaultValues: {
       title: "",
       content: "",
+      tag: "",
     },
   });
   // 2. Define a submit handler.
@@ -74,6 +77,16 @@ export default function CardForm({}: Props) {
             </FormItem>
           )}
         />
+
+        <FormField
+          control={form.control}
+          name="tag"
+          render={({ field }) => (
+            // render multiple tags react on user input enter
+            <TagInput onChange={field.onChange} value={field.value} />
+          )}
+        />
+
         <Button type="submit">Submit</Button>
       </form>
       <Toaster />
