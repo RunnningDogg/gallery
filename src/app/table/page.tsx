@@ -133,54 +133,52 @@ export default async function TablePage({}: Props) {
               </p>
             </CardContent>
           </Card>
+
+          <Card className="col-span-2">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">
+                Color CheatSheet
+              </CardTitle>
+              <Palette className="h-4 w-4" />
+            </CardHeader>
+
+            <CardContent className="min-w-xl mt-3 flex flex-col space-y-3">
+              <div className="flex justify-between border-b pb-1">
+                <span className="bg-gradient-to-r from-violet-500 to-indigo-400 bg-clip-text font-bold text-transparent">
+                  Color
+                </span>
+                <span>Meaning</span>
+                <span>Retention</span>
+              </div>
+              <div className="flex justify-between">
+                <span className=" font-bold text-rose-300">Red</span>
+                <span>Do Not Remember</span>
+                <span>0-20%</span>
+              </div>
+
+              <div className="flex justify-between">
+                <span className=" font-bold text-amber-300">Yellow</span>
+                <span>Barely Remember</span>
+                <span>20%-50%</span>
+              </div>
+
+              <div className="flex justify-between">
+                <span className=" font-bold text-sky-300">Blue</span>
+                <span>Mostly Remember</span>
+                <span>50%-70%</span>
+              </div>
+
+              <div className="flex justify-between">
+                <span className=" font-bold text-teal-300">Green</span>
+                <span>Remember</span>
+                <span>70%-100%</span>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
         {/* table */}
         <div className="space-y-4">
-          <div className="">
-            <Card className="max-w-sm">
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">
-                  Color CheatSheet
-                </CardTitle>
-                <Palette className="h-4 w-4" />
-              </CardHeader>
-
-              <CardContent className="min-w-xl mt-3 flex flex-col space-y-3">
-                <div className="flex justify-between border-b pb-1">
-                  <span className="bg-gradient-to-r from-violet-500 to-indigo-400 bg-clip-text font-bold text-transparent">
-                    Color
-                  </span>
-                  <span>Meaning</span>
-                  <span>Retention</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className=" font-bold text-rose-300">Red</span>
-                  <span>Do Not Remember</span>
-                  <span>0-20%</span>
-                </div>
-
-                <div className="flex justify-between">
-                  <span className=" font-bold text-amber-300">Yellow</span>
-                  <span>Barely Remember</span>
-                  <span>20%-50%</span>
-                </div>
-
-                <div className="flex justify-between">
-                  <span className=" font-bold text-sky-300">Blue</span>
-                  <span>Mostly Remember</span>
-                  <span>50%-70%</span>
-                </div>
-
-                <div className="flex justify-between">
-                  <span className=" font-bold text-teal-300">Green</span>
-                  <span>Remember</span>
-                  <span>70%-100%</span>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
           <h2 className="text-3xl font-bold tracking-tight">Retention</h2>
           <DataTable data={cards} columns={columns} />
         </div>

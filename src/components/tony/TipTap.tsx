@@ -9,6 +9,7 @@ import Heading from "@tiptap/extension-heading";
 import BulletList from "@tiptap/extension-bullet-list";
 import OrderList from "@tiptap/extension-ordered-list";
 import BlockQuote from "@tiptap/extension-blockquote";
+import CodeBlock from "@tiptap/extension-code-block";
 type Props = {
   value: string;
   onChange: (...event: any[]) => void;
@@ -38,6 +39,14 @@ const Tiptap = ({ value, onChange }: Props) => {
       BlockQuote.configure({
         HTMLAttributes: {
           class: "mt-6 border-l-2 pl-6 italic",
+        },
+      }),
+      CodeBlock.configure({
+        HTMLAttributes: {
+          class:
+            // copilot style
+            // github coding codeblock style
+            "my-6 p-4 bg-gray-800 text-gray-100 rounded-md shadow-inner",
         },
       }),
     ],

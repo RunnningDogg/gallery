@@ -856,7 +856,7 @@
 
 "@tiptap/extension-code-block@^2.1.13":
   version "2.1.13"
-  resolved "https://registry.npmmirror.com/@tiptap/extension-code-block/-/extension-code-block-2.1.13.tgz"
+  resolved "https://registry.npmmirror.com/@tiptap/extension-code-block/-/extension-code-block-2.1.13.tgz#3e441d171d3ed821e67291dbf4cbad7e2ea29809"
   integrity sha512-E3tweNExPOV+t1ODKX0MDVsS0aeHGWc1ECt+uyp6XwzsN0bdF2A5+pttQqM7sTcMnQkVACGFbn9wDeLRRcfyQg==
 
 "@tiptap/extension-code@^2.1.13":

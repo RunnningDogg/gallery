@@ -22,6 +22,7 @@
     "@radix-ui/react-toggle": "^1.0.3",
     "@tailwindcss/typography": "^0.5.10",
     "@tanstack/react-table": "^8.10.7",
+    "@tiptap/extension-code-block": "^2.1.13",
     "@tiptap/pm": "^2.1.13",
     "@tiptap/react": "^2.1.13",
     "@tiptap/starter-kit": "^2.1.13",

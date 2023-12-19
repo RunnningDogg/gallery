@@ -9,6 +9,7 @@ import {
   Heading2,
   Quote,
   Heading1,
+  Code2,
 } from "lucide-react";
 import { Toggle } from "../ui/toggle";
 
@@ -84,6 +85,14 @@ export default function ToolBar({ editor }: Props) {
         onPressedChange={() => editor.chain().focus().toggleBlockquote().run()}
       >
         <Quote className="h-4 w-4" />
+      </Toggle>
+
+      <Toggle
+        size="sm"
+        pressed={editor.isActive("codeblock")}
+        onPressedChange={() => editor.chain().focus().toggleCodeBlock().run()}
+      >
+        <Code2 className="h-4 w-4" />
       </Toggle>
     </div>
   );

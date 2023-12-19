@@ -123,8 +123,15 @@ export default function NormalCard({ cardSets }: ICardProps) {
           Prev
         </Button>
 
-        <div className="flex items-center gap-2">
-          <Button
+        <div className="flex items-center gap-3 font-semibold">
+          <Button className="bg-rose-500 font-semibold">Not Remember</Button>
+          <Button className="bg-amber-500 font-semibold">
+            Hardly Remember
+          </Button>
+          <Button className="bg-sky-500 font-semibold">Mostly Remember</Button>
+          <Button className="bg-teal-500 font-semibold">100%</Button>
+
+          {/* <Button
             variant="outline"
             className="transition-all duration-150 hover:scale-110"
           >
@@ -136,7 +143,7 @@ export default function NormalCard({ cardSets }: ICardProps) {
             className="transition-all duration-150 hover:scale-110"
           >
             <X className="text-red-500" />
-          </Button>
+          </Button> */}
         </div>
 
         <Button onClick={nextSet} className="font-semibold">
