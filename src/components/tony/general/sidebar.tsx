@@ -82,7 +82,8 @@ export default function Sidebar({}: Props) {
   return (
     <aside
       className={cn(
-        " relative flex h-screen  flex-col items-center border-r border-slate-200 transition-all duration-150",
+        " sticky top-0 flex h-screen  flex-col items-center border-r border-slate-200 transition-all duration-150",
+        // relative
         {
           "w-60": isSidebarOpen,
           "w-20": !isSidebarOpen,

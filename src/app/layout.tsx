@@ -29,12 +29,13 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "flex h-screen bg-background font-sans antialiased",
+          "flex bg-background font-sans antialiased",
           fontSans.variable,
         )}
       >
         <Sidebar />
-        <section className="flex max-h-[100vh] w-full flex-col py-3">
+        <section className="flex  w-full flex-col py-3">
+          {/* max-h-[100vh] */}
           <Header />
           <div className="flex-1 overflow-y-auto">{children}</div>
         </section>
