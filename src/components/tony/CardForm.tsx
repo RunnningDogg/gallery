@@ -16,6 +16,7 @@ import { Button } from "../ui/button";
 import Tiptap from "./TipTap";
 import toast, { Toaster } from "react-hot-toast";
 import TagInput from "./TagInput";
+import DatePicker from "../ui/date-picker";
 
 type Props = {};
 
@@ -25,6 +26,7 @@ const formSchema = z.object({
   }),
   content: z.string(),
   tag: z.string(),
+  date: z.date(),
 });
 
 export default function CardForm({}: Props) {
@@ -40,8 +42,7 @@ export default function CardForm({}: Props) {
   });
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    toast.success("submit!");
+    toast.success(form.getValues("date").toDateString());
   }
 
   return (
@@ -56,10 +57,20 @@ export default function CardForm({}: Props) {
               <FormControl>
                 <Input placeholder="shadcn" {...field} />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
+
               <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="date"
+          render={({ field }) => (
+            // render multiple tags react on user input enter
+            <FormItem className="flex flex-col gap-1">
+              <FormLabel>Date</FormLabel>
+              <DatePicker onChange={field.onChange} value={field.value} />
             </FormItem>
           )}
         />
@@ -83,7 +94,10 @@ export default function CardForm({}: Props) {
           name="tag"
           render={({ field }) => (
             // render multiple tags react on user input enter
-            <TagInput onChange={field.onChange} value={field.value} />
+            <FormItem>
+              <FormLabel>Tags(optional)</FormLabel>
+              <TagInput onChange={field.onChange} value={field.value} />
+            </FormItem>
           )}
         />
 

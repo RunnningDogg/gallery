@@ -47,6 +47,8 @@ export default function NormalCard({ cardSets }: ICardProps) {
 
   const markup = { __html: currentCard.content };
 
+  const answerMarkup = { __html: currentCard.answer };
+
   return (
     <div className="flex  max-w-4xl flex-col justify-center space-y-3 p-6">
       {/* left */}
@@ -88,8 +90,8 @@ export default function NormalCard({ cardSets }: ICardProps) {
                 </Button>
               </CollapsibleTrigger>
             </div>
-            <CollapsibleContent className="text-center">
-              {currentCard.answer}
+            <CollapsibleContent>
+              <div dangerouslySetInnerHTML={answerMarkup}></div>
             </CollapsibleContent>
           </Collapsible>
 

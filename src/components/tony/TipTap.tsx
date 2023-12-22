@@ -68,13 +68,14 @@ const Tiptap = ({ value, onChange }: Props) => {
   const html = editor?.getHTML();
 
   return (
-    <div className="flex min-h-[250px] flex-col justify-stretch gap-3">
+    <div className="flex  flex-col justify-stretch gap-3">
+      {/* min-h-[250px] */}
       <ToolBar editor={editor} />
       <EditorContent editor={editor} value={value} onChange={onChange} />
 
       {editor?.getHTML()}
 
-      <p> {editor?.getText()} </p>
+      {/* <p> {editor?.getText()} </p> */}
     </div>
   );
 };

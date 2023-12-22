@@ -39,16 +39,9 @@ const cardSets = [
           can be applied to entire page like when page rendered the animation
           begin on textboxes and buttons ... Can you do more tutorials on
           animation This is a card
-          {currentIdx} Great work... It can be applied to entire page like
-          when page rendered the animation begin on textboxes and buttons ...
-          Can you do more tutorials on animation Great work... It can be
-          applied to entire page like when page rendered the animation begin
-          on textboxes and buttons ... Can you do more tutorials on animation
-          Great work... It can be applied to entire page like when page
-          rendered the animation begin on textboxes and buttons ... Can you do
-          more tutorials on animation`,
+          `,
     answer: `Yes. Free to use for personal and commercial projects. No
-    attribution required.`,
+    attribution required. <pre class="my-6 p-4 bg-gray-800 text-gray-100 rounded-md shadow-inner"><code>console.log("hello world");</code></pre>`,
     tags: ["ai", "gpt", "react"],
     date: dayjs().format("ll"),
   },
