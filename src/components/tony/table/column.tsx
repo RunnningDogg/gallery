@@ -1,16 +1,17 @@
 "use client";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Card } from "./data/schema";
+import { TCard } from "./data/schema";
 import { ColumnDef, createColumnHelper } from "@tanstack/react-table";
 import { DataTableColumnHeader } from "./data-table-column-header";
 
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
+import DataTableRowActions from "./data-table-row-actions";
 
-const columnHelper = createColumnHelper<Card>();
+const columnHelper = createColumnHelper<TCard>();
 
 // 定义表格列的类型
-export const columns: ColumnDef<Card>[] = [
+export const columns: ColumnDef<TCard>[] = [
   // 多选框
   {
     id: "select",
@@ -196,5 +197,9 @@ export const columns: ColumnDef<Card>[] = [
   },
   {
     accessorKey: "recalled_fifth_score",
+  },
+  {
+    id: "actions",
+    cell: ({ row }) => <DataTableRowActions row={row} />,
   },
 ];

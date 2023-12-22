@@ -42,4 +42,4 @@ export const cardSchema = z.object({
   recalled_fifth_score: z.number().optional(),
 });
 
-export type Card = z.infer<typeof cardSchema>;
+export type TCard = z.infer<typeof cardSchema>;
