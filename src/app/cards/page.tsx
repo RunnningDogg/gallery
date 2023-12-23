@@ -1,12 +1,35 @@
 "use client";
-import NormalCard from "@/components/tony/NormalCard";
 import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 import dayjs from "dayjs";
 import { Check, X } from "lucide-react";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { z } from "zod";
 type Props = {};
 import localizedFormat from "dayjs/plugin/localizedFormat";
+import { DatePickerWithRange } from "@/components/tony/RangeDatePicker";
+import TagForm from "@/components/tony/memory-tab/tag-form";
+import DateForm from "@/components/tony/memory-tab/date-form";
 dayjs.extend(localizedFormat);
 
 const productSchema = z.object({
@@ -77,7 +100,45 @@ export default function Page({}: Props) {
         Card Set
       </h2>
 
-      <NormalCard cardSets={cardSets} />
+      {/* <NormalCard cardSets={cardSets} /> */}
+
+      {/* tabs */}
+      <Tabs defaultValue="tag" className="mt-10 w-[400px]">
+        <TabsList className="grid w-full grid-cols-2">
+          <TabsTrigger value="tag">Tag</TabsTrigger>
+          <TabsTrigger value="password">Date</TabsTrigger>
+        </TabsList>
+        <TabsContent value="tag">
+          <Card>
+            <CardHeader>
+              <CardTitle>Tag Memo</CardTitle>
+              <CardDescription>
+                Usful for remembering a set of related tag things
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              {/* form */}
+              <TagForm />
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="password">
+          <Card>
+            <CardHeader>
+              <CardTitle>Date Memo</CardTitle>
+              <CardDescription>
+                Usful for remembering a set of related date things when
+                preparing for an exam, or studying a topic
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              {/* date form */}
+              <DateForm />
+            </CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }

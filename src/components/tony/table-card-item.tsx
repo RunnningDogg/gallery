@@ -33,7 +33,7 @@ export default function TableCard({ cardItem }: { cardItem: TCard }) {
   const answerMarkup = { __html: cardItem?.back };
 
   return (
-    <div className="flex max-w-4xl flex-col justify-center space-y-3 p-6">
+    <div className="flex max-w-4xl flex-col justify-center space-y-3">
       {/* card */}
       <Card className="mb-10">
         <CardHeader className="scroll-m-20 pb-2 text-center text-3xl font-semibold tracking-tight first:mt-0">
@@ -93,14 +93,20 @@ export default function TableCard({ cardItem }: { cardItem: TCard }) {
         </CardFooter>
       </Card>
 
-      <div className="  flex justify-between gap-3">
-        <div className="flex items-center gap-3 font-semibold">
-          <Button className="bg-rose-500 font-semibold">Not Remember</Button>
-          <Button className="bg-amber-500 font-semibold">
-            Hardly Remember
+      {collapsible && (
+        <div className="flex items-center justify-between gap-3 font-semibold duration-300 animate-in fade-in">
+          <Button className="bg-rose-500 font-semibold transition-colors duration-200 hover:bg-rose-700">
+            Not Remember 0-20%
           </Button>
-          <Button className="bg-sky-500 font-semibold">Mostly Remember</Button>
-          <Button className="bg-teal-500 font-semibold">100%</Button>
+          <Button className="bg-amber-500 font-semibold transition-colors duration-200 hover:bg-amber-700">
+            Hardly Remember 20%-50%
+          </Button>
+          <Button className="bg-sky-500 font-semibold transition-colors duration-200 hover:bg-sky-700">
+            Mostly Remember 50%-70%
+          </Button>
+          <Button className="bg-teal-500 font-semibold transition-colors duration-200 hover:bg-teal-700">
+            Remember 70%-100%
+          </Button>
 
           {/* <Button
             variant="outline"
@@ -116,7 +122,7 @@ export default function TableCard({ cardItem }: { cardItem: TCard }) {
             <X className="text-red-500" />
           </Button> */}
         </div>
-      </div>
+      )}
     </div>
   );
 }

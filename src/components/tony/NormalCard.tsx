@@ -22,7 +22,6 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import dayjs from "dayjs";
 import { ICardProps } from "@/schema/card";
 
 export default function NormalCard({ cardSets }: ICardProps) {
@@ -121,8 +120,12 @@ export default function NormalCard({ cardSets }: ICardProps) {
       </Card>
 
       <div className="  flex justify-between gap-3">
-        <Button onClick={previousSet} className="font-semibold">
-          Prev
+        <Button
+          onClick={previousSet}
+          className="flex items-center gap-2 font-semibold"
+        >
+          <ArrowLeft className="h-5 w-5" />
+          <span>Prev</span>
         </Button>
 
         <div className="flex items-center gap-3 font-semibold">
@@ -148,8 +151,12 @@ export default function NormalCard({ cardSets }: ICardProps) {
           </Button> */}
         </div>
 
-        <Button onClick={nextSet} className="font-semibold">
-          Next
+        <Button
+          onClick={nextSet}
+          className="flex items-center gap-2 font-semibold "
+        >
+          <span>Next</span>
+          <ArrowRight className="h-5 w-5" />
         </Button>
       </div>
     </div>
