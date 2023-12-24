@@ -15,15 +15,15 @@ const dateStringSchema = z.string().refine(
 // schema for anki flash card
 export const cardSchema = z.object({
   // 卡片id, 后期加上uuid的schema
-  card_id: z.string(),
-  user_email: z.string(),
+  card_id: z.string(), //主键
+  user_email: z.string(), // 第三方登录
   // 卡片内容
-  title: z.string(),
-  front: z.string(),
-  back: z.string(),
-  tags: z.array(z.string()),
+  title: z.string(), // 用户填
+  front: z.string(), // 用户填
+  back: z.string(), // 用户填
+  tags: z.array(z.string()), // 用户填
   // 卡片的状态
-  created_date: dateStringSchema.optional(),
+  created_date: dateStringSchema.optional(), // 用户填
   modified_date: dateStringSchema.optional(),
 
   // z.date接收的是js的Date对象，而不是字符串

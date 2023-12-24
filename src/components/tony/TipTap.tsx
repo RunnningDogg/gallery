@@ -10,6 +10,7 @@ import BulletList from "@tiptap/extension-bullet-list";
 import OrderList from "@tiptap/extension-ordered-list";
 import BlockQuote from "@tiptap/extension-blockquote";
 import CodeBlock from "@tiptap/extension-code-block";
+import { useEffect } from "react";
 type Props = {
   value: string;
   onChange: (...event: any[]) => void;
@@ -67,13 +68,20 @@ const Tiptap = ({ value, onChange }: Props) => {
 
   const html = editor?.getHTML();
 
+  // 监听外部 value 的变化，并更新编辑器内容
+  useEffect(() => {
+    if (editor && value !== editor.getHTML()) {
+      editor.commands.setContent(value);
+    }
+  }, [value, editor]);
+
   return (
     <div className="flex  flex-col justify-stretch gap-3">
       {/* min-h-[250px] */}
       <ToolBar editor={editor} />
       <EditorContent editor={editor} value={value} onChange={onChange} />
 
-      {editor?.getHTML()}
+      {/* {editor?.getHTML()} */}
 
       {/* <p> {editor?.getText()} </p> */}
     </div>

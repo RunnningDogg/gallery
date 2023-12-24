@@ -54,6 +54,8 @@ export function DataTable<TData, TValue>({
   );
   const [sorting, setSorting] = React.useState<SortingState>([]);
 
+  // set up manual pagination
+
   const table = useReactTable({
     data,
     columns,
