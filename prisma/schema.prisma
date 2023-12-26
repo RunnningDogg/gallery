@@ -37,3 +37,26 @@ model User {
   posts   Post[]
   profile Profile?
 }
+
+model Card {
+  card_id               Int      @id @default(autoincrement())
+  user_email            String   @unique @db.VarChar(255)
+  title                 String?  @db.Text
+  front                 String?  @db.Text
+  back                  String?  @db.Text
+  // mysql不支持string,试试Json
+  tags                  Json
+  created_date          DateTime @default(now())
+  modified_date         DateTime @updatedAt
+  // 回忆字段
+  recalled_first_date   DateTime
+  recalled_second_date  DateTime
+  recalled_third_date   DateTime
+  recalled_fourth_date  DateTime
+  recalled_fifth_date   DateTime
+  recalled_first_score  Int
+  recalled_second_score Int
+  recalled_third_score  Int
+  recalled_fourth_score Int
+  recalled_fifth_score  Int
+}

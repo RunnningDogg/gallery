@@ -30,18 +30,19 @@ import localizedFormat from "dayjs/plugin/localizedFormat";
 import { DatePickerWithRange } from "@/components/tony/RangeDatePicker";
 import TagForm from "@/components/tony/memory-tab/tag-form";
 import DateForm from "@/components/tony/memory-tab/date-form";
+import { cardSchema, TCard } from "@/components/tony/table/data/schema";
+
 dayjs.extend(localizedFormat);
 
-const productSchema = z.object({
-  name: z.string(),
-  price: z.number().positive(),
-});
+const userSchema = z.array(
+  z.object({
+    id: z.number(),
+    name: z.string(),
+    email: z.string(),
+  }),
+);
 
-type Product = z.infer<typeof productSchema>;
-
-const getPriceFromProduct = (product: Product) => {
-  return product.price;
-};
+type User = z.infer<typeof userSchema>;
 
 const cardSets = [
   {
@@ -82,13 +83,15 @@ export default function Page({}: Props) {
     const fetchData = async () => {
       fetch("/api/hello")
         .then((res) => res.json())
-        .then((data: Product) => {
-          const validateProduct = productSchema.safeParse(data);
-          if (!validateProduct.success) {
-            console.log(validateProduct.error);
+        .then((data: TCard[]) => {
+          console.log(data);
+
+          const validUser = cardSchema.safeParse(data[0]);
+          if (!validUser.success) {
+            console.log(validUser.error);
             return;
           }
-          console.log(validateProduct.data.name.toUpperCase());
+          console.log(validUser.data);
         });
     };
     fetchData();
