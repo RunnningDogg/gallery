@@ -26,8 +26,8 @@ const formSchema = z.object({
   }),
   front: z.string(),
   back: z.string(),
-  tag: z.string(),
-  date: z.date(),
+  tags: z.string(),
+  created_date: z.date(),
 });
 
 export default function CardForm({}: Props) {
@@ -38,13 +38,48 @@ export default function CardForm({}: Props) {
     defaultValues: {
       title: "",
       front: "",
-      tag: "",
-      date: new Date(),
+      tags: "",
+      created_date: new Date(),
     },
   });
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    toast.success(JSON.stringify(values, null, 2));
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const submmitedValues = {
+      ...values,
+      tags: values.tags.split(","), // convert string to array
+      user_email: "gogo@163.com",
+    };
+
+    // toast.success(JSON.stringify(submmitedValues, null, 2));
+
+    // post json data
+    toast.promise(
+      fetch("/api/cards", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(submmitedValues),
+      }).then((response) => {
+        if (!response.ok) {
+          // 如果 HTTP 状态码表示错误，则抛出错误
+          throw new Error("Failed to save");
+        }
+        return response.json();
+      }),
+      {
+        loading: "Saving...",
+        success: "Successfully saved!",
+        error: "Something went wrong",
+      },
+    );
+    // await fetch("/api/cards", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(submmitedValues),
+    // });
   }
 
   return (
@@ -67,7 +102,7 @@ export default function CardForm({}: Props) {
 
         <FormField
           control={form.control}
-          name="date"
+          name="created_date"
           render={({ field }) => (
             // render multiple tags react on user input enter
             <FormItem className="flex flex-col gap-1">
@@ -114,7 +149,7 @@ export default function CardForm({}: Props) {
 
         <FormField
           control={form.control}
-          name="tag"
+          name="tags"
           render={({ field }) => (
             // render multiple tags react on user input enter
             <FormItem>

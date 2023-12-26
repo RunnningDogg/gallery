@@ -1,5 +1,4 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -8,41 +7,18 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 
 import dayjs from "dayjs";
-import { Check, X } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { z } from "zod";
 type Props = {};
 import localizedFormat from "dayjs/plugin/localizedFormat";
-import { DatePickerWithRange } from "@/components/tony/RangeDatePicker";
 import TagForm from "@/components/tony/memory-tab/tag-form";
 import DateForm from "@/components/tony/memory-tab/date-form";
-import { cardSchema, TCard } from "@/components/tony/table/data/schema";
+import { CardSchema, TCard, cardSchemaArray } from "@/schema/card";
 
 dayjs.extend(localizedFormat);
-
-const userSchema = z.array(
-  z.object({
-    id: z.number(),
-    name: z.string(),
-    email: z.string(),
-  }),
-);
-
-type User = z.infer<typeof userSchema>;
 
 const cardSets = [
   {
@@ -86,7 +62,7 @@ export default function Page({}: Props) {
         .then((data: TCard[]) => {
           console.log(data);
 
-          const validUser = cardSchema.safeParse(data[0]);
+          const validUser = cardSchemaArray.safeParse(data);
           if (!validUser.success) {
             console.log(validUser.error);
             return;
