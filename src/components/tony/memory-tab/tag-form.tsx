@@ -27,10 +27,11 @@ import {
 type Props = {};
 
 const formSchema = z.object({
-  tag: z.string().min(2, {
-    message: "tag must be at least 2 characters.",
-  }),
-  cardNum: z.number(),
+  tag: z
+    .string({ required_error: "tag is required" })
+    .trim()
+    .min(1, { message: "You must enter a tag" }),
+  cardNum: z.string().optional(),
 });
 
 export default function TagForm({}: Props) {
@@ -40,7 +41,7 @@ export default function TagForm({}: Props) {
     resolver: zodResolver(formSchema),
     defaultValues: {
       tag: "",
-      cardNum: 10,
+      // cardNum: 10,
     },
   });
   // 2. Define a submit handler.
@@ -56,7 +57,7 @@ export default function TagForm({}: Props) {
           name="tag"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Tag</FormLabel>
+              <FormLabel>Tag (optional)</FormLabel>
               <FormControl>
                 <Input placeholder="shadcn" {...field} />
               </FormControl>
@@ -72,12 +73,13 @@ export default function TagForm({}: Props) {
           render={({ field }) => (
             // render multiple tags react on user input enter
             <FormItem className="flex flex-col gap-1">
-              <FormLabel>Date</FormLabel>
-              <Select>
+              <FormLabel>Card Number</FormLabel>
+              <FormDescription>Default select all cards!</FormDescription>
+              <Select defaultValue={field.value} onValueChange={field.onChange}>
                 <SelectTrigger className="w-[180px]" id="cardnum">
-                  <SelectValue placeholder="Select a Card Num" />
+                  <SelectValue placeholder="Num of card" />
                 </SelectTrigger>
-                <SelectContent {...field} defaultValue={10}>
+                <SelectContent>
                   <SelectGroup>
                     <SelectLabel>Cards Num</SelectLabel>
                     <SelectItem value="10">10</SelectItem>

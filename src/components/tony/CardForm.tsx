@@ -48,11 +48,9 @@ export default function CardForm({}: Props) {
       ...values,
       tags: values.tags.split(","), // convert string to array
       user_email: "gogo@163.com",
+      type: "add",
     };
 
-    // toast.success(JSON.stringify(submmitedValues, null, 2));
-
-    // post json data
     toast.promise(
       fetch("/api/cards", {
         method: "POST",
@@ -137,7 +135,6 @@ export default function CardForm({}: Props) {
               <FormLabel className="font-bold">Card Back Content⭐️</FormLabel>
               <FormDescription>
                 Something really need to remember like exam, interview, etc.
-                {field.value}
               </FormDescription>
               <FormControl>
                 <Tiptap value={field.value} onChange={field.onChange} />

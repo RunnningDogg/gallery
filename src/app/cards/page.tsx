@@ -55,23 +55,23 @@ const cardSets = [
 ];
 
 export default function Page({}: Props) {
-  useEffect(() => {
-    const fetchData = async () => {
-      fetch("/api/hello")
-        .then((res) => res.json())
-        .then((data: TCard[]) => {
-          console.log(data);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     fetch("/api/hello")
+  //       .then((res) => res.json())
+  //       .then((data: TCard[]) => {
+  //         console.log(data);
 
-          const validUser = cardSchemaArray.safeParse(data);
-          if (!validUser.success) {
-            console.log(validUser.error);
-            return;
-          }
-          console.log(validUser.data);
-        });
-    };
-    fetchData();
-  }, []);
+  //         const validUser = cardSchemaArray.safeParse(data);
+  //         if (!validUser.success) {
+  //           console.log(validUser.error);
+  //           return;
+  //         }
+  //         console.log(validUser.data);
+  //       });
+  //   };
+  //   fetchData();
+  // }, []);
 
   return (
     <div className="flex max-w-[1200px] flex-col items-center">
@@ -82,7 +82,7 @@ export default function Page({}: Props) {
       {/* <NormalCard cardSets={cardSets} /> */}
 
       {/* tabs */}
-      <Tabs defaultValue="tag" className="mt-10 w-[400px]">
+      <Tabs defaultValue="tag" className="mt-10 w-[500px]">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="tag">Tag</TabsTrigger>
           <TabsTrigger value="password">Date</TabsTrigger>

@@ -29,11 +29,11 @@ import { DatePickerWithRangeControl } from "./range-date-picker";
 type Props = {};
 
 const formSchema = z.object({
-  cardNum: z.number(),
   dateRange: z.object({
     from: z.date(),
     to: z.date(),
   }),
+  cardNum: z.string().optional(),
 });
 
 export default function DateForm({}: Props) {
@@ -42,7 +42,7 @@ export default function DateForm({}: Props) {
     mode: "onChange",
     resolver: zodResolver(formSchema),
     defaultValues: {
-      cardNum: 10,
+      // cardNum: 10,
       dateRange: {
         from: addDays(new Date(), -7),
         to: new Date(),
@@ -62,7 +62,7 @@ export default function DateForm({}: Props) {
           name="dateRange"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Title</FormLabel>
+              <FormLabel>Date Range</FormLabel>
               <FormControl>
                 {/* <Input placeholder="shadcn" {...field} /> */}
                 <DatePickerWithRangeControl
@@ -82,12 +82,13 @@ export default function DateForm({}: Props) {
           render={({ field }) => (
             // render multiple tags react on user input enter
             <FormItem className="flex flex-col gap-1">
-              <FormLabel>Date</FormLabel>
-              <Select>
+              <FormLabel>Card Num (optional)</FormLabel>
+              <FormDescription>Default select all cards!</FormDescription>
+              <Select {...field}>
                 <SelectTrigger className="w-[180px]" id="cardnum">
                   <SelectValue placeholder="Select a Card Num" />
                 </SelectTrigger>
-                <SelectContent {...field}>
+                <SelectContent>
                   <SelectGroup>
                     <SelectLabel>Cards Num</SelectLabel>
                     <SelectItem value="10">10</SelectItem>

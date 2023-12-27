@@ -10,15 +10,32 @@ export async function GET(request: Request) {
 
 export async function POST(request: NextRequest) {
   const requestJson = await request.json();
-  // const { title, front, back, tags, user_email } = requestJson;
+  const { title, front, back, tags, user_email, created_date, type } =
+    requestJson;
 
-  console.log("post请求的数据：", requestJson);
-  const addData = {
-    ...requestJson,
-    modified_date: new Date(),
-  };
-  const card = await prisma.card.create({
-    data: requestJson,
-  });
-  return NextResponse.json(card);
+  switch (type) {
+    case "get":
+      const cards = await prisma.card.findMany();
+      return NextResponse.json(cards);
+    case "add":
+      const addData = {
+        title,
+        front,
+        back,
+        tags,
+        user_email,
+        created_date,
+        // modified_date: new Date(),
+      };
+      const card = await prisma.card.create({
+        data: addData,
+      });
+      return NextResponse.json(card);
+    case "update":
+      return NextResponse.json({ status: 0 });
+    case "delete":
+      return NextResponse.json({ status: 0 });
+    default:
+      return NextResponse.json({ error: "type error" });
+  }
 }

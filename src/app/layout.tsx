@@ -5,9 +5,9 @@ import Header from "@/components/tony/general/header";
 import Sidebar from "@/components/tony/general/sidebar";
 import { cn } from "@/lib/utils";
 import { Inter as FontSans } from "next/font/google";
-import QueryProvider from "@/components/tony/general/query-provider";
+
 // const inter = Inter({ subsets: ["latin"] });
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -33,16 +33,12 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
-        <QueryProvider>
-          <Sidebar />
-          <section className="flex  w-full flex-col py-3">
-            {/* max-h-[100vh] */}
-            <Header />
-            <div className="flex-1 overflow-y-auto">{children}</div>
-          </section>
-
-          <ReactQueryDevtools initialIsOpen={false} />
-        </QueryProvider>
+        <Sidebar />
+        <section className="flex  w-full flex-col py-3">
+          {/* max-h-[100vh] */}
+          <Header />
+          <div className="flex-1 overflow-y-auto">{children}</div>
+        </section>
       </body>
     </html>
   );
